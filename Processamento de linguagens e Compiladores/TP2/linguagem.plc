@@ -1,0 +1,47 @@
+% Linguagem que Criamos - PLC (Processamento de Linguagens e Compiladores)
+% `%` é comentado
+
+% Declarar variáveis inteiras
+int x, int y, int resultado;
+
+% Instrução de atribuição
+x = 5;
+y = 10;
+
+% Operações aritméticas
+resultado = x + y;
+altera resultado = resultado * 2;
+
+% Operações relacionais
+ifse (x > y) entao
+  imprimir("x é maior que y");
+senao
+  imprimir("y é maior que x");
+fim_cond;
+
+% Nova Variavel
+int inp;
+
+% Entrada e Saida do usuário
+imprimir("Digite um valor para inp:\n");
+inp = input;
+
+% Estrutura de repetição while-do
+enquanto (inp > 0) fazz
+  imprimir(inp);
+  imprimir("\n");
+  altera inp = inp - 1;
+fim_enquanto;
+
+altera inp = 200;
+
+% Fim do Código
+% Outro tipo de declarações possiveis
+lista int 5, arr;
+matriz int 3 2, mat;
+altera mat[0][1] = 2;
+
+altera arr[0] = inp;
+
+
+

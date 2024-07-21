@@ -1,0 +1,233 @@
+PL_Ficha1:
+
+##
+Exc 1.1
+import re
+
+line1 = "hello world"
+line2 = "goodbye world"
+line3 = "hi, hello there"
+
+#testInput = input('>> ')
+if re.match(r'hello',line3):
+  print("match")
+else:
+  print("hello not found (no inicio da frase)")
+
+
+##
+Exc 1.2
+
+import re
+
+line1 = "hello world"
+line2 = "goodbye world"
+line3 = "hi, hello there"
+
+testInput = input(">> ")
+while testInput != "":
+  if re.search(r'hello',testInput):
+    print("match")
+  else:
+    print("hello not found (na frase toda)")
+  testInput = input (">> ")
+
+
+Exc 1.3
+
+import re
+
+line = "Hello there! Uh, hi, hello, it's me... Heyyy, hello? HELLO!"
+
+testeInput = input (">> ")
+while testeInput != "":
+  if res := re.findall(r"[Hh][eE][lL][lL][oO]",testeInput):
+    print("match: ",res)
+  else:
+    print("Hello Not Found")
+  testeInput = input(">> ")
+
+
+Exc 1.4
+line = "Hello there! Uh, hi, hello, it's me... Heyyy, hello? HELLO!"
+
+resp = re.sub(r"[hH][eE][lL][lL][oO]", "*YEP*", line,0)
+ou
+resp = re.sub(r"(?:hello)", "*YEP*", line,0)
+print(resp)
+
+
+Exc 1.5
+
+import re
+
+line = "bananas, laranjas, maçãs, uvas, melancias, cerejas, kiwis, etc."
+
+res = re.split(r", ",line)
+print("match: ",res) 
+
+Exc 2
+
+import re
+
+def palavra_magica(frase):
+  if re.search(r"por favor[\?\!]$",frase):
+    return True
+  else:
+    return False
+
+print(palavra_magica("Posso ir à casa de banho, por favor?"))
+print(palavra_magica("Preciso de um favor."))
+
+
+Exc 3
+
+import re
+
+def narcissismo(linha):
+  lista = re.findall(r"[Ee][uU]",linha)
+  #print(lista)
+  return len(lista)
+
+print(narcissismo("Eu não sei se eu quero continuar a ser eu. Por outro lado, eu ser eu é uma parte importante de quem EU sou."))
+
+
+Exc 4
+
+import re
+
+def troca_de_curso(linha, novo_curso):
+  ret = re.sub(r"LEI",novo_curso,linha)
+  return ret
+
+fonte = "LEI é o melhor curso! Adoro LEI! Gostar de LEI devia ser uma lei."
+curso = input("Novo curso? ")
+print(troca_de_curso(fonte, curso))
+
+
+Exc 5
+
+import re
+
+def soma_string(linha):
+  vals = []
+  vals = re.split(",",linha)
+  
+  sum = 0
+  for v in vals:
+    sum += int(v)
+  return sum
+
+print(soma_string("4,10,-6,2,3,8,-3,0,2,-5,1"))
+
+
+Exc 6
+import re
+
+def tolower(lista):
+  res = []
+  for palavra in lista:
+    res.append(palavra.lower())
+  return res
+
+def pronomes(frase):
+  return re.findall(r"(?i:eu|tu|ele|ela|nos|vos|eles)",frase)
+
+
+frase = "Ola eu vou de certeza. Tu e ele, vêm? Eu não espero por vós. Eu estou com pressa, ele tem de vir!"
+pslist = pronomes(frase)
+print(tolower(pslist))
+
+psset = set(tolower(pslist))
+print(psset)
+
+
+Exc 7
+import re
+
+id = "fsdfsdf2"
+
+def variavel_valida(id):
+  ret = []
+  ret = re.findall(r"^[a-zA-Z_][a-zA-Z0-9_]*$",id)
+
+  if len(ret) == 0:
+    return False
+  return True
+
+print(variavel_valida(id))
+
+
+
+Exc 8
+import re
+
+teste = "1efs-23a3dad324adf-1"
+
+def lista_de_numeros(str):
+  ret = []
+  ret = re.findall(r"-?[0-9]+",str)
+
+  return ret
+
+print(lista_de_numeros(teste))
+
+
+
+Exc 9
+import re
+
+def underscores(frase):
+  ret = re.sub(r"[ ]+","_",frase)
+  return ret
+
+print(underscores("Aqui temos   um belo   exemplo   de frase    completamente  maluca  !"))
+
+
+
+Exc 10
+lista = [
+    "4700-000",
+    "1234-567",
+    "8541-543",
+    "4123-974",
+    "9481-025"
+]
+
+def codigos_postais(lista):
+  l_pares = []
+  for cod in lista:
+    vals = cod.split(r"-")
+    l_pares.append((vals[0],vals[1]))
+
+  return l_pares
+
+print(codigos_postais(lista))
+
+//
+from re import *
+
+lista = [
+    "4700-000",
+    "1234-567",
+    "8541-543",
+    "4123-974",
+    "9481-025"
+]
+
+def codigos_postais(lista):
+  l_pares = []
+  for cod in lista:
+    cods = cod.split(r"#")
+    for cod2 in cods:
+      vals = cod2.split(r"-")
+      l_pares.append((vals[0],vals[1]))
+
+  return l_pares
+
+print(codigos_postais(lista))
+# ...
+# adapte o exercício para processar o texto lista2
+#
+lista2 = ["1100-3#1234-777#1198-999#4715-012"]
+

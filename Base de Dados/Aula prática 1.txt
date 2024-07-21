@@ -1,0 +1,57 @@
+Aula prática 1:
+
+Farmacia
+
+Contextualização: Querem criar uma base de dados para automatizar a farmacia na medida em que o vendedor apenas concluindo a compra de um medicamento por um cliente, automaticamente esse medicamento saia num tapete até ao cliente.
+
+Objetivos: Organizar o seu modelo de negócio, bem como melhorar a sua capacidade de gestão e registo de vendas. Saber, a cada momento, aquilo que tem em loja, o que foi vendido e o que precisa de ser reaprovisionado. Gerir de forma efetiva as contas da loja. Conhecer melhor os seus clientes, através da implementação de mecanismos de análise de vendas e de profiling de clientes. Melhorar a velocidade de serviço da mercearia.
+
+Recursos:
+Humanos - 1 engenheiro, 2 tecnicos informaticos, 3 trolhas.
+Materiais – Hardware (1 servidor, 1 braço mecanico). 
+	  – Software (1 programa de seleção de medicamento).
+
+Plano de Execução: (Diagrama de Gantt)
+2 semana a criar o projeto
+2 semanas a criar o servidor
+2 semanas a criar o programa de selecao de medicamentos
+2 semanas para a montagem na farmacia com a conta de stock incluida
+
+
+Descrição| Id | Data | Requesitos | Area | Fonte | Analista
+
+| RD1 | hj | Podem exisitir varias farmacias | Farmacia | Documento | eu
+
+| RD2 | hj | Cada farmacia tem um ID e um codigo postal | Farmacia | Documento | eu
+
+| RD3 | hj | Os clientes devem estar registados na farmacia | Farmacia | Documento | eu
+
+| RD4 | hj | Cada cliente tem um ID | Farmacia | Documento | eu
+
+| RD5 | hj | Em cada farmacia há 5 funcionários | Farmacia | Documento | eu
+
+| RD6 | hj | O tipo de funcionario pode ser: chefe, tecnico de farmacia, estafeta e gestor de iventário | Farmacia | Documento | eu
+
+| RD7 | hj | Farmacia pode trabalhar presencial, apenas entrega ou hibrido | Farmacia | Documento | eu
+
+| RD8 | hj | Todos os medicamentos devem ser catalogados | Farmacia | Documento | eu
+
+| RD9 | hj | Os medicamentos são defenidos por comprimidos, capsulas ou xarope | Farmacia | Documento | eu
+
+| RD10 | hj | Todas as compras devem estar registadas | Farmacia | Documento | eu
+
+| RD11 | hj | Cada compra pode conter vários medicamentes e apenas um cliente associado | Farmacia | Documento | eu
+
+| RD12 | hj | O preço final é inferido da multiplicacao entre a quantidade e o valor associado ao produto | Farmacia | Documento | eu
+
+| RD13 | hj | Prestrições médicas dão um desconto de 40% | Farmacia | Documento | eu
+
+| RD14 | hj | Desconto extra de 10% a todos os reformados (apenas com receita médica) | Farmacia | Documento | eu
+hj era 18/9/23
+
+
+
+
+
+
+

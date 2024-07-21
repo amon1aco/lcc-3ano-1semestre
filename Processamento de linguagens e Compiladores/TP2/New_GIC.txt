@@ -1,0 +1,74 @@
+## GIC que criamos
+
+Programa : Decls
+         | Atrib
+         | Decls Corpo
+         | Atrib Corpo
+         | Corpo
+
+Corpo : Codigo
+    
+Codigo : Proc Codigo
+       | Proc
+       | Decls Codigo
+       | Decls
+       | Atrib Codigo
+       | Atrib
+       | COMENTARIO Codigo
+       | COMENTARIO
+
+Decls : Decl PONTOVIRGULA
+      | Decl VIRGULA Decls
+
+Proc : IF
+     | WHILE
+     | PRINTAR
+
+Decl : INT ID
+     | MATRIZ INT NUM NUM VIRGULA ID
+     | LISTA INT NUM VIRGULA ID PONTOVIRGULA
+
+Atrib : INT ID IGUAL expr PONTOVIRGULA
+      | ID IGUAL expr PONTOVIRGULA
+      | ALTERA ID IGUAL expr PONTOVIRGULA
+      | ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA                                  -- Lista
+      | ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA     -- Matriz
+      | ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL LISTA                                              -- add Lista em Matriz
+
+expr : exprArit
+     | exprRel
+     | NUM
+     | ID
+     | INPUT
+     | ID LPAREN_RETO expr RPAREN_RETO
+     | ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+
+exprArit : exprArit PLUS term
+         | exprArit MINUS term
+         | term
+
+term : term TIMES factor
+     | term DIVIDE factor
+     | factor
+
+factor : NUM
+       | ID
+
+exprRel : expr IGUALIGUAL expr
+        | expr DIFERENTE expr
+        | expr MENOR expr
+        | expr MENOROUIGUAL expr
+        | expr MAIOR expr
+        | expr MAIOROUIGUAL expr
+        | expr EE expr
+        | expr OU expr
+
+IF : SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+   | SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+
+WHILE : ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+
+PRINTAR : IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+        | IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+
+COMENTARIO : COMENTADO

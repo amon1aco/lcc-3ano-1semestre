@@ -1,0 +1,3171 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> Decls
+Rule 2     Programa -> Atrib
+Rule 3     Programa -> Decls Corpo
+Rule 4     Programa -> Atrib Corpo
+Rule 5     Programa -> Corpo
+Rule 6     Corpo -> Codigo
+Rule 7     Codigo -> Proc Codigo
+Rule 8     Codigo -> Decls Codigo
+Rule 9     Codigo -> Atrib Codigo
+Rule 10    Codigo -> COMENTARIO Codigo
+Rule 11    Codigo -> Proc
+Rule 12    Codigo -> Atrib
+Rule 13    Codigo -> Decls
+Rule 14    Codigo -> COMENTARIO
+Rule 15    Decls -> Decl PONTOVIRGULA
+Rule 16    Decls -> Decl VIRGULA Decls
+Rule 17    expr -> exprArit
+Rule 18    expr -> exprRel
+Rule 19    Proc -> IF
+Rule 20    Proc -> WHILE
+Rule 21    Proc -> PRINTAR
+Rule 22    Decl -> INT ID
+Rule 23    Atrib -> INT ID IGUAL expr PONTOVIRGULA
+Rule 24    Atrib -> ID IGUAL expr PONTOVIRGULA
+Rule 25    Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA
+Rule 26    expr -> NUM
+Rule 27    expr -> ID
+Rule 28    expr -> INPUT
+Rule 29    Decl -> LISTA INT NUM VIRGULA ID
+Rule 30    Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+Rule 31    expr -> ID LPAREN_RETO expr RPAREN_RETO
+Rule 32    Decl -> MATRIZ INT NUM NUM VIRGULA ID
+Rule 33    Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+Rule 34    expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+Rule 35    exprArit -> exprArit PLUS term
+Rule 36    exprArit -> exprArit MINUS term
+Rule 37    exprArit -> term
+Rule 38    term -> term TIMES factor
+Rule 39    term -> term DIVIDE factor
+Rule 40    term -> factor
+Rule 41    factor -> NUM
+Rule 42    factor -> ID
+Rule 43    exprRel -> expr IGUALIGUAL expr
+Rule 44    exprRel -> expr DIFERENTE expr
+Rule 45    exprRel -> expr MENOR expr
+Rule 46    exprRel -> expr MENOROUIGUAL expr
+Rule 47    exprRel -> expr MAIOR expr
+Rule 48    exprRel -> expr MAIOROUIGUAL expr
+Rule 49    exprRel -> expr EE expr
+Rule 50    exprRel -> expr OU expr
+Rule 51    IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+Rule 52    IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+Rule 53    WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+Rule 54    PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+Rule 55    PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+Rule 56    COMENTARIO -> COMENTADO
+
+Terminals, with rules where they appear
+
+ALTERA               : 25 30 33
+COMENTADO            : 56
+DIFERENTE            : 44
+DIVIDE               : 39
+EE                   : 49
+ENQUANTO             : 53
+ENTAO                : 51 52
+FAZ                  : 53
+FIM_COND             : 51 52
+FIM_ENQUANTO         : 53
+FRASE                : 54
+ID                   : 22 23 24 25 27 29 30 31 32 33 34 42 55
+IGUAL                : 23 24 25 30 33
+IGUALIGUAL           : 43
+IMPRIMIR             : 54 55
+INPUT                : 28
+INT                  : 22 23 29 32
+LISTA                : 29
+LPAREN               : 51 52 53 54 55
+LPAREN_RETO          : 30 31 33 33 34 34
+MAIOR                : 47
+MAIOROUIGUAL         : 48
+MATRIZ               : 32
+MENOR                : 45
+MENOROUIGUAL         : 46
+MINUS                : 36
+NUM                  : 26 29 32 32 41
+OU                   : 50
+PLUS                 : 35
+PONTOVIRGULA         : 15 23 24 25 30 33 51 52 53 54 55
+RPAREN               : 51 52 53 54 55
+RPAREN_RETO          : 30 31 33 33 34 34
+SE                   : 51 52
+SENAO                : 52
+TIMES                : 38
+VIRGULA              : 16 29 32
+error                : 
+
+Nonterminals, with rules where they appear
+
+Atrib                : 2 4 9 12
+COMENTARIO           : 10 14
+Codigo               : 6 7 8 9 10 51 52 52 53
+Corpo                : 3 4 5
+Decl                 : 15 16
+Decls                : 1 3 8 13 16
+IF                   : 19
+PRINTAR              : 21
+Proc                 : 7 11
+Programa             : 0
+WHILE                : 20
+expr                 : 23 24 25 30 30 31 33 33 33 34 34 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50
+exprArit             : 17 35 36
+exprRel              : 18 51 52 53
+factor               : 38 39 40
+term                 : 35 36 37 38 39
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . Decls
+    (2) Programa -> . Atrib
+    (3) Programa -> . Decls Corpo
+    (4) Programa -> . Atrib Corpo
+    (5) Programa -> . Corpo
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (6) Corpo -> . Codigo
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+
+    Programa                       shift and go to state 1
+    Decls                          shift and go to state 2
+    Atrib                          shift and go to state 3
+    Corpo                          shift and go to state 4
+    Decl                           shift and go to state 5
+    Codigo                         shift and go to state 9
+    Proc                           shift and go to state 12
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+
+state 1
+
+    (0) S' -> Programa .
+
+
+
+state 2
+
+    (1) Programa -> Decls .
+    (3) Programa -> Decls . Corpo
+    (8) Codigo -> Decls . Codigo
+    (13) Codigo -> Decls .
+    (6) Corpo -> . Codigo
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+  ! reduce/reduce conflict for $end resolved using rule 1 (Programa -> Decls .)
+    $end            reduce using rule 1 (Programa -> Decls .)
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+  ! $end            [ reduce using rule 13 (Codigo -> Decls .) ]
+
+    Decls                          shift and go to state 21
+    Corpo                          shift and go to state 22
+    Codigo                         shift and go to state 23
+    Proc                           shift and go to state 12
+    Atrib                          shift and go to state 24
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 3
+
+    (2) Programa -> Atrib .
+    (4) Programa -> Atrib . Corpo
+    (9) Codigo -> Atrib . Codigo
+    (12) Codigo -> Atrib .
+    (6) Corpo -> . Codigo
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+  ! reduce/reduce conflict for $end resolved using rule 2 (Programa -> Atrib .)
+    $end            reduce using rule 2 (Programa -> Atrib .)
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+  ! $end            [ reduce using rule 12 (Codigo -> Atrib .) ]
+
+    Atrib                          shift and go to state 24
+    Corpo                          shift and go to state 25
+    Codigo                         shift and go to state 26
+    Proc                           shift and go to state 12
+    Decls                          shift and go to state 21
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 4
+
+    (5) Programa -> Corpo .
+
+    $end            reduce using rule 5 (Programa -> Corpo .)
+
+
+state 5
+
+    (15) Decls -> Decl . PONTOVIRGULA
+    (16) Decls -> Decl . VIRGULA Decls
+
+    PONTOVIRGULA    shift and go to state 27
+    VIRGULA         shift and go to state 28
+
+
+state 6
+
+    (23) Atrib -> INT . ID IGUAL expr PONTOVIRGULA
+    (22) Decl -> INT . ID
+
+    ID              shift and go to state 29
+
+
+state 7
+
+    (24) Atrib -> ID . IGUAL expr PONTOVIRGULA
+
+    IGUAL           shift and go to state 30
+
+
+state 8
+
+    (25) Atrib -> ALTERA . ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> ALTERA . ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> ALTERA . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+
+    ID              shift and go to state 31
+
+
+state 9
+
+    (6) Corpo -> Codigo .
+
+    $end            reduce using rule 6 (Corpo -> Codigo .)
+
+
+state 10
+
+    (29) Decl -> LISTA . INT NUM VIRGULA ID
+
+    INT             shift and go to state 32
+
+
+state 11
+
+    (32) Decl -> MATRIZ . INT NUM NUM VIRGULA ID
+
+    INT             shift and go to state 33
+
+
+state 12
+
+    (7) Codigo -> Proc . Codigo
+    (11) Codigo -> Proc .
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    $end            reduce using rule 11 (Codigo -> Proc .)
+    FIM_COND        reduce using rule 11 (Codigo -> Proc .)
+    SENAO           reduce using rule 11 (Codigo -> Proc .)
+    FIM_ENQUANTO    reduce using rule 11 (Codigo -> Proc .)
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    Proc                           shift and go to state 12
+    Codigo                         shift and go to state 34
+    Decls                          shift and go to state 21
+    Atrib                          shift and go to state 24
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 13
+
+    (10) Codigo -> COMENTARIO . Codigo
+    (14) Codigo -> COMENTARIO .
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    $end            reduce using rule 14 (Codigo -> COMENTARIO .)
+    FIM_COND        reduce using rule 14 (Codigo -> COMENTARIO .)
+    SENAO           reduce using rule 14 (Codigo -> COMENTARIO .)
+    FIM_ENQUANTO    reduce using rule 14 (Codigo -> COMENTARIO .)
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    COMENTARIO                     shift and go to state 13
+    Codigo                         shift and go to state 35
+    Proc                           shift and go to state 12
+    Decls                          shift and go to state 21
+    Atrib                          shift and go to state 24
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 14
+
+    (19) Proc -> IF .
+
+    INT             reduce using rule 19 (Proc -> IF .)
+    ID              reduce using rule 19 (Proc -> IF .)
+    ALTERA          reduce using rule 19 (Proc -> IF .)
+    COMENTADO       reduce using rule 19 (Proc -> IF .)
+    SE              reduce using rule 19 (Proc -> IF .)
+    ENQUANTO        reduce using rule 19 (Proc -> IF .)
+    IMPRIMIR        reduce using rule 19 (Proc -> IF .)
+    LISTA           reduce using rule 19 (Proc -> IF .)
+    MATRIZ          reduce using rule 19 (Proc -> IF .)
+    $end            reduce using rule 19 (Proc -> IF .)
+    FIM_COND        reduce using rule 19 (Proc -> IF .)
+    SENAO           reduce using rule 19 (Proc -> IF .)
+    FIM_ENQUANTO    reduce using rule 19 (Proc -> IF .)
+
+
+state 15
+
+    (20) Proc -> WHILE .
+
+    INT             reduce using rule 20 (Proc -> WHILE .)
+    ID              reduce using rule 20 (Proc -> WHILE .)
+    ALTERA          reduce using rule 20 (Proc -> WHILE .)
+    COMENTADO       reduce using rule 20 (Proc -> WHILE .)
+    SE              reduce using rule 20 (Proc -> WHILE .)
+    ENQUANTO        reduce using rule 20 (Proc -> WHILE .)
+    IMPRIMIR        reduce using rule 20 (Proc -> WHILE .)
+    LISTA           reduce using rule 20 (Proc -> WHILE .)
+    MATRIZ          reduce using rule 20 (Proc -> WHILE .)
+    $end            reduce using rule 20 (Proc -> WHILE .)
+    FIM_COND        reduce using rule 20 (Proc -> WHILE .)
+    SENAO           reduce using rule 20 (Proc -> WHILE .)
+    FIM_ENQUANTO    reduce using rule 20 (Proc -> WHILE .)
+
+
+state 16
+
+    (21) Proc -> PRINTAR .
+
+    INT             reduce using rule 21 (Proc -> PRINTAR .)
+    ID              reduce using rule 21 (Proc -> PRINTAR .)
+    ALTERA          reduce using rule 21 (Proc -> PRINTAR .)
+    COMENTADO       reduce using rule 21 (Proc -> PRINTAR .)
+    SE              reduce using rule 21 (Proc -> PRINTAR .)
+    ENQUANTO        reduce using rule 21 (Proc -> PRINTAR .)
+    IMPRIMIR        reduce using rule 21 (Proc -> PRINTAR .)
+    LISTA           reduce using rule 21 (Proc -> PRINTAR .)
+    MATRIZ          reduce using rule 21 (Proc -> PRINTAR .)
+    $end            reduce using rule 21 (Proc -> PRINTAR .)
+    FIM_COND        reduce using rule 21 (Proc -> PRINTAR .)
+    SENAO           reduce using rule 21 (Proc -> PRINTAR .)
+    FIM_ENQUANTO    reduce using rule 21 (Proc -> PRINTAR .)
+
+
+state 17
+
+    (56) COMENTARIO -> COMENTADO .
+
+    INT             reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    ID              reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    ALTERA          reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    COMENTADO       reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    SE              reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    ENQUANTO        reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    IMPRIMIR        reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    LISTA           reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    MATRIZ          reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    $end            reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    FIM_COND        reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    SENAO           reduce using rule 56 (COMENTARIO -> COMENTADO .)
+    FIM_ENQUANTO    reduce using rule 56 (COMENTARIO -> COMENTADO .)
+
+
+state 18
+
+    (51) IF -> SE . LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> SE . LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+
+    LPAREN          shift and go to state 36
+
+
+state 19
+
+    (53) WHILE -> ENQUANTO . LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+
+    LPAREN          shift and go to state 37
+
+
+state 20
+
+    (54) PRINTAR -> IMPRIMIR . LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> IMPRIMIR . LPAREN ID RPAREN PONTOVIRGULA
+
+    LPAREN          shift and go to state 38
+
+
+state 21
+
+    (8) Codigo -> Decls . Codigo
+    (13) Codigo -> Decls .
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    $end            reduce using rule 13 (Codigo -> Decls .)
+    FIM_COND        reduce using rule 13 (Codigo -> Decls .)
+    SENAO           reduce using rule 13 (Codigo -> Decls .)
+    FIM_ENQUANTO    reduce using rule 13 (Codigo -> Decls .)
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    Decls                          shift and go to state 21
+    Codigo                         shift and go to state 39
+    Proc                           shift and go to state 12
+    Atrib                          shift and go to state 24
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 22
+
+    (3) Programa -> Decls Corpo .
+
+    $end            reduce using rule 3 (Programa -> Decls Corpo .)
+
+
+state 23
+
+    (8) Codigo -> Decls Codigo .
+    (6) Corpo -> Codigo .
+
+  ! reduce/reduce conflict for $end resolved using rule 6 (Corpo -> Codigo .)
+    $end            reduce using rule 6 (Corpo -> Codigo .)
+
+  ! $end            [ reduce using rule 8 (Codigo -> Decls Codigo .) ]
+
+
+state 24
+
+    (9) Codigo -> Atrib . Codigo
+    (12) Codigo -> Atrib .
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    $end            reduce using rule 12 (Codigo -> Atrib .)
+    FIM_COND        reduce using rule 12 (Codigo -> Atrib .)
+    SENAO           reduce using rule 12 (Codigo -> Atrib .)
+    FIM_ENQUANTO    reduce using rule 12 (Codigo -> Atrib .)
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    Atrib                          shift and go to state 24
+    Codigo                         shift and go to state 40
+    Proc                           shift and go to state 12
+    Decls                          shift and go to state 21
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 25
+
+    (4) Programa -> Atrib Corpo .
+
+    $end            reduce using rule 4 (Programa -> Atrib Corpo .)
+
+
+state 26
+
+    (9) Codigo -> Atrib Codigo .
+    (6) Corpo -> Codigo .
+
+  ! reduce/reduce conflict for $end resolved using rule 6 (Corpo -> Codigo .)
+    $end            reduce using rule 6 (Corpo -> Codigo .)
+
+  ! $end            [ reduce using rule 9 (Codigo -> Atrib Codigo .) ]
+
+
+state 27
+
+    (15) Decls -> Decl PONTOVIRGULA .
+
+    INT             reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    ID              reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    ALTERA          reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    COMENTADO       reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    SE              reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    LISTA           reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    MATRIZ          reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    $end            reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    FIM_COND        reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    SENAO           reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 15 (Decls -> Decl PONTOVIRGULA .)
+
+
+state 28
+
+    (16) Decls -> Decl VIRGULA . Decls
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    INT             shift and go to state 42
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    Decl                           shift and go to state 5
+    Decls                          shift and go to state 41
+
+state 29
+
+    (23) Atrib -> INT ID . IGUAL expr PONTOVIRGULA
+    (22) Decl -> INT ID .
+
+    IGUAL           shift and go to state 43
+    PONTOVIRGULA    reduce using rule 22 (Decl -> INT ID .)
+    VIRGULA         reduce using rule 22 (Decl -> INT ID .)
+
+
+state 30
+
+    (24) Atrib -> ID IGUAL . expr PONTOVIRGULA
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 45
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 31
+
+    (25) Atrib -> ALTERA ID . IGUAL expr PONTOVIRGULA
+    (30) Atrib -> ALTERA ID . LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> ALTERA ID . LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+
+    IGUAL           shift and go to state 52
+    LPAREN_RETO     shift and go to state 53
+
+
+state 32
+
+    (29) Decl -> LISTA INT . NUM VIRGULA ID
+
+    NUM             shift and go to state 54
+
+
+state 33
+
+    (32) Decl -> MATRIZ INT . NUM NUM VIRGULA ID
+
+    NUM             shift and go to state 55
+
+
+state 34
+
+    (7) Codigo -> Proc Codigo .
+
+    $end            reduce using rule 7 (Codigo -> Proc Codigo .)
+    FIM_COND        reduce using rule 7 (Codigo -> Proc Codigo .)
+    SENAO           reduce using rule 7 (Codigo -> Proc Codigo .)
+    FIM_ENQUANTO    reduce using rule 7 (Codigo -> Proc Codigo .)
+
+
+state 35
+
+    (10) Codigo -> COMENTARIO Codigo .
+
+    $end            reduce using rule 10 (Codigo -> COMENTARIO Codigo .)
+    FIM_COND        reduce using rule 10 (Codigo -> COMENTARIO Codigo .)
+    SENAO           reduce using rule 10 (Codigo -> COMENTARIO Codigo .)
+    FIM_ENQUANTO    reduce using rule 10 (Codigo -> COMENTARIO Codigo .)
+
+
+state 36
+
+    (51) IF -> SE LPAREN . exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> SE LPAREN . exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    exprRel                        shift and go to state 56
+    expr                           shift and go to state 57
+    exprArit                       shift and go to state 46
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 37
+
+    (53) WHILE -> ENQUANTO LPAREN . exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    exprRel                        shift and go to state 58
+    expr                           shift and go to state 57
+    exprArit                       shift and go to state 46
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 38
+
+    (54) PRINTAR -> IMPRIMIR LPAREN . FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> IMPRIMIR LPAREN . ID RPAREN PONTOVIRGULA
+
+    FRASE           shift and go to state 59
+    ID              shift and go to state 60
+
+
+state 39
+
+    (8) Codigo -> Decls Codigo .
+
+    $end            reduce using rule 8 (Codigo -> Decls Codigo .)
+    FIM_COND        reduce using rule 8 (Codigo -> Decls Codigo .)
+    SENAO           reduce using rule 8 (Codigo -> Decls Codigo .)
+    FIM_ENQUANTO    reduce using rule 8 (Codigo -> Decls Codigo .)
+
+
+state 40
+
+    (9) Codigo -> Atrib Codigo .
+
+    $end            reduce using rule 9 (Codigo -> Atrib Codigo .)
+    FIM_COND        reduce using rule 9 (Codigo -> Atrib Codigo .)
+    SENAO           reduce using rule 9 (Codigo -> Atrib Codigo .)
+    FIM_ENQUANTO    reduce using rule 9 (Codigo -> Atrib Codigo .)
+
+
+state 41
+
+    (16) Decls -> Decl VIRGULA Decls .
+
+    INT             reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    ID              reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    ALTERA          reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    COMENTADO       reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    SE              reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    ENQUANTO        reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    IMPRIMIR        reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    LISTA           reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    MATRIZ          reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    $end            reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    FIM_COND        reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    SENAO           reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+    FIM_ENQUANTO    reduce using rule 16 (Decls -> Decl VIRGULA Decls .)
+
+
+state 42
+
+    (22) Decl -> INT . ID
+
+    ID              shift and go to state 61
+
+
+state 43
+
+    (23) Atrib -> INT ID IGUAL . expr PONTOVIRGULA
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 62
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 44
+
+    (27) expr -> ID .
+    (31) expr -> ID . LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> ID . LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (42) factor -> ID .
+
+  ! reduce/reduce conflict for PONTOVIRGULA resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for IGUALIGUAL resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for DIFERENTE resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for MENOR resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for MENOROUIGUAL resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for MAIOR resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for MAIOROUIGUAL resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for EE resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for OU resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for RPAREN_RETO resolved using rule 27 (expr -> ID .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 27 (expr -> ID .)
+    PONTOVIRGULA    reduce using rule 27 (expr -> ID .)
+    IGUALIGUAL      reduce using rule 27 (expr -> ID .)
+    DIFERENTE       reduce using rule 27 (expr -> ID .)
+    MENOR           reduce using rule 27 (expr -> ID .)
+    MENOROUIGUAL    reduce using rule 27 (expr -> ID .)
+    MAIOR           reduce using rule 27 (expr -> ID .)
+    MAIOROUIGUAL    reduce using rule 27 (expr -> ID .)
+    EE              reduce using rule 27 (expr -> ID .)
+    OU              reduce using rule 27 (expr -> ID .)
+    RPAREN_RETO     reduce using rule 27 (expr -> ID .)
+    RPAREN          reduce using rule 27 (expr -> ID .)
+    LPAREN_RETO     shift and go to state 63
+    TIMES           reduce using rule 42 (factor -> ID .)
+    DIVIDE          reduce using rule 42 (factor -> ID .)
+    PLUS            reduce using rule 42 (factor -> ID .)
+    MINUS           reduce using rule 42 (factor -> ID .)
+
+  ! PONTOVIRGULA    [ reduce using rule 42 (factor -> ID .) ]
+  ! IGUALIGUAL      [ reduce using rule 42 (factor -> ID .) ]
+  ! DIFERENTE       [ reduce using rule 42 (factor -> ID .) ]
+  ! MENOR           [ reduce using rule 42 (factor -> ID .) ]
+  ! MENOROUIGUAL    [ reduce using rule 42 (factor -> ID .) ]
+  ! MAIOR           [ reduce using rule 42 (factor -> ID .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 42 (factor -> ID .) ]
+  ! EE              [ reduce using rule 42 (factor -> ID .) ]
+  ! OU              [ reduce using rule 42 (factor -> ID .) ]
+  ! RPAREN_RETO     [ reduce using rule 42 (factor -> ID .) ]
+  ! RPAREN          [ reduce using rule 42 (factor -> ID .) ]
+
+
+state 45
+
+    (24) Atrib -> ID IGUAL expr . PONTOVIRGULA
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    PONTOVIRGULA    shift and go to state 64
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 46
+
+    (17) expr -> exprArit .
+    (35) exprArit -> exprArit . PLUS term
+    (36) exprArit -> exprArit . MINUS term
+
+    PONTOVIRGULA    reduce using rule 17 (expr -> exprArit .)
+    IGUALIGUAL      reduce using rule 17 (expr -> exprArit .)
+    DIFERENTE       reduce using rule 17 (expr -> exprArit .)
+    MENOR           reduce using rule 17 (expr -> exprArit .)
+    MENOROUIGUAL    reduce using rule 17 (expr -> exprArit .)
+    MAIOR           reduce using rule 17 (expr -> exprArit .)
+    MAIOROUIGUAL    reduce using rule 17 (expr -> exprArit .)
+    EE              reduce using rule 17 (expr -> exprArit .)
+    OU              reduce using rule 17 (expr -> exprArit .)
+    RPAREN_RETO     reduce using rule 17 (expr -> exprArit .)
+    RPAREN          reduce using rule 17 (expr -> exprArit .)
+    PLUS            shift and go to state 73
+    MINUS           shift and go to state 74
+
+
+state 47
+
+    (18) expr -> exprRel .
+
+    PONTOVIRGULA    reduce using rule 18 (expr -> exprRel .)
+    IGUALIGUAL      reduce using rule 18 (expr -> exprRel .)
+    DIFERENTE       reduce using rule 18 (expr -> exprRel .)
+    MENOR           reduce using rule 18 (expr -> exprRel .)
+    MENOROUIGUAL    reduce using rule 18 (expr -> exprRel .)
+    MAIOR           reduce using rule 18 (expr -> exprRel .)
+    MAIOROUIGUAL    reduce using rule 18 (expr -> exprRel .)
+    EE              reduce using rule 18 (expr -> exprRel .)
+    OU              reduce using rule 18 (expr -> exprRel .)
+    RPAREN_RETO     reduce using rule 18 (expr -> exprRel .)
+    RPAREN          reduce using rule 18 (expr -> exprRel .)
+
+
+state 48
+
+    (26) expr -> NUM .
+    (41) factor -> NUM .
+
+  ! reduce/reduce conflict for PONTOVIRGULA resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for IGUALIGUAL resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for DIFERENTE resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for MENOR resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for MENOROUIGUAL resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for MAIOR resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for MAIOROUIGUAL resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for EE resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for OU resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for RPAREN_RETO resolved using rule 26 (expr -> NUM .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 26 (expr -> NUM .)
+    PONTOVIRGULA    reduce using rule 26 (expr -> NUM .)
+    IGUALIGUAL      reduce using rule 26 (expr -> NUM .)
+    DIFERENTE       reduce using rule 26 (expr -> NUM .)
+    MENOR           reduce using rule 26 (expr -> NUM .)
+    MENOROUIGUAL    reduce using rule 26 (expr -> NUM .)
+    MAIOR           reduce using rule 26 (expr -> NUM .)
+    MAIOROUIGUAL    reduce using rule 26 (expr -> NUM .)
+    EE              reduce using rule 26 (expr -> NUM .)
+    OU              reduce using rule 26 (expr -> NUM .)
+    RPAREN_RETO     reduce using rule 26 (expr -> NUM .)
+    RPAREN          reduce using rule 26 (expr -> NUM .)
+    TIMES           reduce using rule 41 (factor -> NUM .)
+    DIVIDE          reduce using rule 41 (factor -> NUM .)
+    PLUS            reduce using rule 41 (factor -> NUM .)
+    MINUS           reduce using rule 41 (factor -> NUM .)
+
+  ! PONTOVIRGULA    [ reduce using rule 41 (factor -> NUM .) ]
+  ! IGUALIGUAL      [ reduce using rule 41 (factor -> NUM .) ]
+  ! DIFERENTE       [ reduce using rule 41 (factor -> NUM .) ]
+  ! MENOR           [ reduce using rule 41 (factor -> NUM .) ]
+  ! MENOROUIGUAL    [ reduce using rule 41 (factor -> NUM .) ]
+  ! MAIOR           [ reduce using rule 41 (factor -> NUM .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 41 (factor -> NUM .) ]
+  ! EE              [ reduce using rule 41 (factor -> NUM .) ]
+  ! OU              [ reduce using rule 41 (factor -> NUM .) ]
+  ! RPAREN_RETO     [ reduce using rule 41 (factor -> NUM .) ]
+  ! RPAREN          [ reduce using rule 41 (factor -> NUM .) ]
+
+
+state 49
+
+    (28) expr -> INPUT .
+
+    PONTOVIRGULA    reduce using rule 28 (expr -> INPUT .)
+    IGUALIGUAL      reduce using rule 28 (expr -> INPUT .)
+    DIFERENTE       reduce using rule 28 (expr -> INPUT .)
+    MENOR           reduce using rule 28 (expr -> INPUT .)
+    MENOROUIGUAL    reduce using rule 28 (expr -> INPUT .)
+    MAIOR           reduce using rule 28 (expr -> INPUT .)
+    MAIOROUIGUAL    reduce using rule 28 (expr -> INPUT .)
+    EE              reduce using rule 28 (expr -> INPUT .)
+    OU              reduce using rule 28 (expr -> INPUT .)
+    RPAREN_RETO     reduce using rule 28 (expr -> INPUT .)
+    RPAREN          reduce using rule 28 (expr -> INPUT .)
+
+
+state 50
+
+    (37) exprArit -> term .
+    (38) term -> term . TIMES factor
+    (39) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 37 (exprArit -> term .)
+    MINUS           reduce using rule 37 (exprArit -> term .)
+    PONTOVIRGULA    reduce using rule 37 (exprArit -> term .)
+    IGUALIGUAL      reduce using rule 37 (exprArit -> term .)
+    DIFERENTE       reduce using rule 37 (exprArit -> term .)
+    MENOR           reduce using rule 37 (exprArit -> term .)
+    MENOROUIGUAL    reduce using rule 37 (exprArit -> term .)
+    MAIOR           reduce using rule 37 (exprArit -> term .)
+    MAIOROUIGUAL    reduce using rule 37 (exprArit -> term .)
+    EE              reduce using rule 37 (exprArit -> term .)
+    OU              reduce using rule 37 (exprArit -> term .)
+    RPAREN_RETO     reduce using rule 37 (exprArit -> term .)
+    RPAREN          reduce using rule 37 (exprArit -> term .)
+    TIMES           shift and go to state 75
+    DIVIDE          shift and go to state 76
+
+
+state 51
+
+    (40) term -> factor .
+
+    TIMES           reduce using rule 40 (term -> factor .)
+    DIVIDE          reduce using rule 40 (term -> factor .)
+    PLUS            reduce using rule 40 (term -> factor .)
+    MINUS           reduce using rule 40 (term -> factor .)
+    PONTOVIRGULA    reduce using rule 40 (term -> factor .)
+    IGUALIGUAL      reduce using rule 40 (term -> factor .)
+    DIFERENTE       reduce using rule 40 (term -> factor .)
+    MENOR           reduce using rule 40 (term -> factor .)
+    MENOROUIGUAL    reduce using rule 40 (term -> factor .)
+    MAIOR           reduce using rule 40 (term -> factor .)
+    MAIOROUIGUAL    reduce using rule 40 (term -> factor .)
+    EE              reduce using rule 40 (term -> factor .)
+    OU              reduce using rule 40 (term -> factor .)
+    RPAREN_RETO     reduce using rule 40 (term -> factor .)
+    RPAREN          reduce using rule 40 (term -> factor .)
+
+
+state 52
+
+    (25) Atrib -> ALTERA ID IGUAL . expr PONTOVIRGULA
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 77
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 53
+
+    (30) Atrib -> ALTERA ID LPAREN_RETO . expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> ALTERA ID LPAREN_RETO . expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 78
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 54
+
+    (29) Decl -> LISTA INT NUM . VIRGULA ID
+
+    VIRGULA         shift and go to state 79
+
+
+state 55
+
+    (32) Decl -> MATRIZ INT NUM . NUM VIRGULA ID
+
+    NUM             shift and go to state 80
+
+
+state 56
+
+    (51) IF -> SE LPAREN exprRel . RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> SE LPAREN exprRel . RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (18) expr -> exprRel .
+
+    RPAREN          shift and go to state 81
+    IGUALIGUAL      reduce using rule 18 (expr -> exprRel .)
+    DIFERENTE       reduce using rule 18 (expr -> exprRel .)
+    MENOR           reduce using rule 18 (expr -> exprRel .)
+    MENOROUIGUAL    reduce using rule 18 (expr -> exprRel .)
+    MAIOR           reduce using rule 18 (expr -> exprRel .)
+    MAIOROUIGUAL    reduce using rule 18 (expr -> exprRel .)
+    EE              reduce using rule 18 (expr -> exprRel .)
+    OU              reduce using rule 18 (expr -> exprRel .)
+
+
+state 57
+
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 58
+
+    (53) WHILE -> ENQUANTO LPAREN exprRel . RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (18) expr -> exprRel .
+
+    RPAREN          shift and go to state 82
+    IGUALIGUAL      reduce using rule 18 (expr -> exprRel .)
+    DIFERENTE       reduce using rule 18 (expr -> exprRel .)
+    MENOR           reduce using rule 18 (expr -> exprRel .)
+    MENOROUIGUAL    reduce using rule 18 (expr -> exprRel .)
+    MAIOR           reduce using rule 18 (expr -> exprRel .)
+    MAIOROUIGUAL    reduce using rule 18 (expr -> exprRel .)
+    EE              reduce using rule 18 (expr -> exprRel .)
+    OU              reduce using rule 18 (expr -> exprRel .)
+
+
+state 59
+
+    (54) PRINTAR -> IMPRIMIR LPAREN FRASE . RPAREN PONTOVIRGULA
+
+    RPAREN          shift and go to state 83
+
+
+state 60
+
+    (55) PRINTAR -> IMPRIMIR LPAREN ID . RPAREN PONTOVIRGULA
+
+    RPAREN          shift and go to state 84
+
+
+state 61
+
+    (22) Decl -> INT ID .
+
+    PONTOVIRGULA    reduce using rule 22 (Decl -> INT ID .)
+    VIRGULA         reduce using rule 22 (Decl -> INT ID .)
+
+
+state 62
+
+    (23) Atrib -> INT ID IGUAL expr . PONTOVIRGULA
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    PONTOVIRGULA    shift and go to state 85
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 63
+
+    (31) expr -> ID LPAREN_RETO . expr RPAREN_RETO
+    (34) expr -> ID LPAREN_RETO . expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 86
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 64
+
+    (24) Atrib -> ID IGUAL expr PONTOVIRGULA .
+
+    INT             reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    ID              reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    ALTERA          reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    COMENTADO       reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    SE              reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    LISTA           reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    MATRIZ          reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    $end            reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    FIM_COND        reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    SENAO           reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 24 (Atrib -> ID IGUAL expr PONTOVIRGULA .)
+
+
+state 65
+
+    (43) exprRel -> expr IGUALIGUAL . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 87
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 66
+
+    (44) exprRel -> expr DIFERENTE . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 88
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 67
+
+    (45) exprRel -> expr MENOR . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 89
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 68
+
+    (46) exprRel -> expr MENOROUIGUAL . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 90
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 69
+
+    (47) exprRel -> expr MAIOR . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 91
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 70
+
+    (48) exprRel -> expr MAIOROUIGUAL . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 92
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 71
+
+    (49) exprRel -> expr EE . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 93
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 72
+
+    (50) exprRel -> expr OU . expr
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 94
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 73
+
+    (35) exprArit -> exprArit PLUS . term
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 96
+    ID              shift and go to state 97
+
+    term                           shift and go to state 95
+    factor                         shift and go to state 51
+
+state 74
+
+    (36) exprArit -> exprArit MINUS . term
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 96
+    ID              shift and go to state 97
+
+    term                           shift and go to state 98
+    factor                         shift and go to state 51
+
+state 75
+
+    (38) term -> term TIMES . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 96
+    ID              shift and go to state 97
+
+    factor                         shift and go to state 99
+
+state 76
+
+    (39) term -> term DIVIDE . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 96
+    ID              shift and go to state 97
+
+    factor                         shift and go to state 100
+
+state 77
+
+    (25) Atrib -> ALTERA ID IGUAL expr . PONTOVIRGULA
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    PONTOVIRGULA    shift and go to state 101
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 78
+
+    (30) Atrib -> ALTERA ID LPAREN_RETO expr . RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr . RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    RPAREN_RETO     shift and go to state 102
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 79
+
+    (29) Decl -> LISTA INT NUM VIRGULA . ID
+
+    ID              shift and go to state 103
+
+
+state 80
+
+    (32) Decl -> MATRIZ INT NUM NUM . VIRGULA ID
+
+    VIRGULA         shift and go to state 104
+
+
+state 81
+
+    (51) IF -> SE LPAREN exprRel RPAREN . ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> SE LPAREN exprRel RPAREN . ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+
+    ENTAO           shift and go to state 105
+
+
+state 82
+
+    (53) WHILE -> ENQUANTO LPAREN exprRel RPAREN . FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+
+    FAZ             shift and go to state 106
+
+
+state 83
+
+    (54) PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 107
+
+
+state 84
+
+    (55) PRINTAR -> IMPRIMIR LPAREN ID RPAREN . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 108
+
+
+state 85
+
+    (23) Atrib -> INT ID IGUAL expr PONTOVIRGULA .
+
+    INT             reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    ID              reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    ALTERA          reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    COMENTADO       reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    SE              reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    LISTA           reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    MATRIZ          reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    $end            reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    FIM_COND        reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    SENAO           reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 23 (Atrib -> INT ID IGUAL expr PONTOVIRGULA .)
+
+
+state 86
+
+    (31) expr -> ID LPAREN_RETO expr . RPAREN_RETO
+    (34) expr -> ID LPAREN_RETO expr . RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    RPAREN_RETO     shift and go to state 109
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 87
+
+    (43) exprRel -> expr IGUALIGUAL expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .)
+    RPAREN          reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .)
+    RPAREN_RETO     reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+  ! DIFERENTE       [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+  ! MENOR           [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+  ! MAIOR           [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+  ! EE              [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+  ! OU              [ reduce using rule 43 (exprRel -> expr IGUALIGUAL expr .) ]
+
+
+state 88
+
+    (44) exprRel -> expr DIFERENTE expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 44 (exprRel -> expr DIFERENTE expr .)
+    RPAREN          reduce using rule 44 (exprRel -> expr DIFERENTE expr .)
+    RPAREN_RETO     reduce using rule 44 (exprRel -> expr DIFERENTE expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+  ! DIFERENTE       [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+  ! MENOR           [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+  ! MAIOR           [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+  ! EE              [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+  ! OU              [ reduce using rule 44 (exprRel -> expr DIFERENTE expr .) ]
+
+
+state 89
+
+    (45) exprRel -> expr MENOR expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 45 (exprRel -> expr MENOR expr .)
+    RPAREN          reduce using rule 45 (exprRel -> expr MENOR expr .)
+    RPAREN_RETO     reduce using rule 45 (exprRel -> expr MENOR expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+  ! DIFERENTE       [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+  ! MENOR           [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+  ! MAIOR           [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+  ! EE              [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+  ! OU              [ reduce using rule 45 (exprRel -> expr MENOR expr .) ]
+
+
+state 90
+
+    (46) exprRel -> expr MENOROUIGUAL expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .)
+    RPAREN          reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .)
+    RPAREN_RETO     reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+  ! DIFERENTE       [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+  ! MENOR           [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+  ! MAIOR           [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+  ! EE              [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+  ! OU              [ reduce using rule 46 (exprRel -> expr MENOROUIGUAL expr .) ]
+
+
+state 91
+
+    (47) exprRel -> expr MAIOR expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 47 (exprRel -> expr MAIOR expr .)
+    RPAREN          reduce using rule 47 (exprRel -> expr MAIOR expr .)
+    RPAREN_RETO     reduce using rule 47 (exprRel -> expr MAIOR expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+  ! DIFERENTE       [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+  ! MENOR           [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+  ! MAIOR           [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+  ! EE              [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+  ! OU              [ reduce using rule 47 (exprRel -> expr MAIOR expr .) ]
+
+
+state 92
+
+    (48) exprRel -> expr MAIOROUIGUAL expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .)
+    RPAREN          reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .)
+    RPAREN_RETO     reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+  ! DIFERENTE       [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+  ! MENOR           [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+  ! MAIOR           [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+  ! EE              [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+  ! OU              [ reduce using rule 48 (exprRel -> expr MAIOROUIGUAL expr .) ]
+
+
+state 93
+
+    (49) exprRel -> expr EE expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 49 (exprRel -> expr EE expr .)
+    RPAREN          reduce using rule 49 (exprRel -> expr EE expr .)
+    RPAREN_RETO     reduce using rule 49 (exprRel -> expr EE expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+  ! DIFERENTE       [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+  ! MENOR           [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+  ! MAIOR           [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+  ! EE              [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+  ! OU              [ reduce using rule 49 (exprRel -> expr EE expr .) ]
+
+
+state 94
+
+    (50) exprRel -> expr OU expr .
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+  ! shift/reduce conflict for IGUALIGUAL resolved as shift
+  ! shift/reduce conflict for DIFERENTE resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENOROUIGUAL resolved as shift
+  ! shift/reduce conflict for MAIOR resolved as shift
+  ! shift/reduce conflict for MAIOROUIGUAL resolved as shift
+  ! shift/reduce conflict for EE resolved as shift
+  ! shift/reduce conflict for OU resolved as shift
+    PONTOVIRGULA    reduce using rule 50 (exprRel -> expr OU expr .)
+    RPAREN          reduce using rule 50 (exprRel -> expr OU expr .)
+    RPAREN_RETO     reduce using rule 50 (exprRel -> expr OU expr .)
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+  ! IGUALIGUAL      [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+  ! DIFERENTE       [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+  ! MENOR           [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+  ! MENOROUIGUAL    [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+  ! MAIOR           [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+  ! MAIOROUIGUAL    [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+  ! EE              [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+  ! OU              [ reduce using rule 50 (exprRel -> expr OU expr .) ]
+
+
+state 95
+
+    (35) exprArit -> exprArit PLUS term .
+    (38) term -> term . TIMES factor
+    (39) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    MINUS           reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    PONTOVIRGULA    reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    IGUALIGUAL      reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    DIFERENTE       reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    MENOR           reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    MENOROUIGUAL    reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    MAIOR           reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    MAIOROUIGUAL    reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    EE              reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    OU              reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    RPAREN_RETO     reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    RPAREN          reduce using rule 35 (exprArit -> exprArit PLUS term .)
+    TIMES           shift and go to state 75
+    DIVIDE          shift and go to state 76
+
+
+state 96
+
+    (41) factor -> NUM .
+
+    TIMES           reduce using rule 41 (factor -> NUM .)
+    DIVIDE          reduce using rule 41 (factor -> NUM .)
+    PLUS            reduce using rule 41 (factor -> NUM .)
+    MINUS           reduce using rule 41 (factor -> NUM .)
+    PONTOVIRGULA    reduce using rule 41 (factor -> NUM .)
+    IGUALIGUAL      reduce using rule 41 (factor -> NUM .)
+    DIFERENTE       reduce using rule 41 (factor -> NUM .)
+    MENOR           reduce using rule 41 (factor -> NUM .)
+    MENOROUIGUAL    reduce using rule 41 (factor -> NUM .)
+    MAIOR           reduce using rule 41 (factor -> NUM .)
+    MAIOROUIGUAL    reduce using rule 41 (factor -> NUM .)
+    EE              reduce using rule 41 (factor -> NUM .)
+    OU              reduce using rule 41 (factor -> NUM .)
+    RPAREN_RETO     reduce using rule 41 (factor -> NUM .)
+    RPAREN          reduce using rule 41 (factor -> NUM .)
+
+
+state 97
+
+    (42) factor -> ID .
+
+    TIMES           reduce using rule 42 (factor -> ID .)
+    DIVIDE          reduce using rule 42 (factor -> ID .)
+    PLUS            reduce using rule 42 (factor -> ID .)
+    MINUS           reduce using rule 42 (factor -> ID .)
+    PONTOVIRGULA    reduce using rule 42 (factor -> ID .)
+    IGUALIGUAL      reduce using rule 42 (factor -> ID .)
+    DIFERENTE       reduce using rule 42 (factor -> ID .)
+    MENOR           reduce using rule 42 (factor -> ID .)
+    MENOROUIGUAL    reduce using rule 42 (factor -> ID .)
+    MAIOR           reduce using rule 42 (factor -> ID .)
+    MAIOROUIGUAL    reduce using rule 42 (factor -> ID .)
+    EE              reduce using rule 42 (factor -> ID .)
+    OU              reduce using rule 42 (factor -> ID .)
+    RPAREN_RETO     reduce using rule 42 (factor -> ID .)
+    RPAREN          reduce using rule 42 (factor -> ID .)
+
+
+state 98
+
+    (36) exprArit -> exprArit MINUS term .
+    (38) term -> term . TIMES factor
+    (39) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    MINUS           reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    PONTOVIRGULA    reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    IGUALIGUAL      reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    DIFERENTE       reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    MENOR           reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    MENOROUIGUAL    reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    MAIOR           reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    MAIOROUIGUAL    reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    EE              reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    OU              reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    RPAREN_RETO     reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    RPAREN          reduce using rule 36 (exprArit -> exprArit MINUS term .)
+    TIMES           shift and go to state 75
+    DIVIDE          shift and go to state 76
+
+
+state 99
+
+    (38) term -> term TIMES factor .
+
+    TIMES           reduce using rule 38 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 38 (term -> term TIMES factor .)
+    PLUS            reduce using rule 38 (term -> term TIMES factor .)
+    MINUS           reduce using rule 38 (term -> term TIMES factor .)
+    PONTOVIRGULA    reduce using rule 38 (term -> term TIMES factor .)
+    IGUALIGUAL      reduce using rule 38 (term -> term TIMES factor .)
+    DIFERENTE       reduce using rule 38 (term -> term TIMES factor .)
+    MENOR           reduce using rule 38 (term -> term TIMES factor .)
+    MENOROUIGUAL    reduce using rule 38 (term -> term TIMES factor .)
+    MAIOR           reduce using rule 38 (term -> term TIMES factor .)
+    MAIOROUIGUAL    reduce using rule 38 (term -> term TIMES factor .)
+    EE              reduce using rule 38 (term -> term TIMES factor .)
+    OU              reduce using rule 38 (term -> term TIMES factor .)
+    RPAREN_RETO     reduce using rule 38 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 38 (term -> term TIMES factor .)
+
+
+state 100
+
+    (39) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 39 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 39 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 39 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 39 (term -> term DIVIDE factor .)
+    PONTOVIRGULA    reduce using rule 39 (term -> term DIVIDE factor .)
+    IGUALIGUAL      reduce using rule 39 (term -> term DIVIDE factor .)
+    DIFERENTE       reduce using rule 39 (term -> term DIVIDE factor .)
+    MENOR           reduce using rule 39 (term -> term DIVIDE factor .)
+    MENOROUIGUAL    reduce using rule 39 (term -> term DIVIDE factor .)
+    MAIOR           reduce using rule 39 (term -> term DIVIDE factor .)
+    MAIOROUIGUAL    reduce using rule 39 (term -> term DIVIDE factor .)
+    EE              reduce using rule 39 (term -> term DIVIDE factor .)
+    OU              reduce using rule 39 (term -> term DIVIDE factor .)
+    RPAREN_RETO     reduce using rule 39 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 39 (term -> term DIVIDE factor .)
+
+
+state 101
+
+    (25) Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .
+
+    INT             reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    ID              reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    ALTERA          reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    COMENTADO       reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    SE              reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    LISTA           reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    MATRIZ          reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    $end            reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    FIM_COND        reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    SENAO           reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 25 (Atrib -> ALTERA ID IGUAL expr PONTOVIRGULA .)
+
+
+state 102
+
+    (30) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO . IGUAL expr PONTOVIRGULA
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO . LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+
+    IGUAL           shift and go to state 111
+    LPAREN_RETO     shift and go to state 110
+
+
+state 103
+
+    (29) Decl -> LISTA INT NUM VIRGULA ID .
+
+    PONTOVIRGULA    reduce using rule 29 (Decl -> LISTA INT NUM VIRGULA ID .)
+    VIRGULA         reduce using rule 29 (Decl -> LISTA INT NUM VIRGULA ID .)
+
+
+state 104
+
+    (32) Decl -> MATRIZ INT NUM NUM VIRGULA . ID
+
+    ID              shift and go to state 112
+
+
+state 105
+
+    (51) IF -> SE LPAREN exprRel RPAREN ENTAO . Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> SE LPAREN exprRel RPAREN ENTAO . Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    Codigo                         shift and go to state 113
+    Proc                           shift and go to state 12
+    Decls                          shift and go to state 21
+    Atrib                          shift and go to state 24
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 106
+
+    (53) WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ . Codigo FIM_ENQUANTO PONTOVIRGULA
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    Codigo                         shift and go to state 114
+    Proc                           shift and go to state 12
+    Decls                          shift and go to state 21
+    Atrib                          shift and go to state 24
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 107
+
+    (54) PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .
+
+    INT             reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    ID              reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    ALTERA          reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    COMENTADO       reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    SE              reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    LISTA           reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    MATRIZ          reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    $end            reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    FIM_COND        reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    SENAO           reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 54 (PRINTAR -> IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA .)
+
+
+state 108
+
+    (55) PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .
+
+    INT             reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    ID              reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    ALTERA          reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    COMENTADO       reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    SE              reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    LISTA           reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    MATRIZ          reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    $end            reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    FIM_COND        reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    SENAO           reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 55 (PRINTAR -> IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA .)
+
+
+state 109
+
+    (31) expr -> ID LPAREN_RETO expr RPAREN_RETO .
+    (34) expr -> ID LPAREN_RETO expr RPAREN_RETO . LPAREN_RETO expr RPAREN_RETO
+
+    PONTOVIRGULA    reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    IGUALIGUAL      reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    DIFERENTE       reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    MENOR           reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    MENOROUIGUAL    reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    MAIOR           reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    MAIOROUIGUAL    reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    EE              reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    OU              reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    RPAREN_RETO     reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    RPAREN          reduce using rule 31 (expr -> ID LPAREN_RETO expr RPAREN_RETO .)
+    LPAREN_RETO     shift and go to state 115
+
+
+state 110
+
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO . expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 116
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 111
+
+    (30) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL . expr PONTOVIRGULA
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 117
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 112
+
+    (32) Decl -> MATRIZ INT NUM NUM VIRGULA ID .
+
+    PONTOVIRGULA    reduce using rule 32 (Decl -> MATRIZ INT NUM NUM VIRGULA ID .)
+    VIRGULA         reduce using rule 32 (Decl -> MATRIZ INT NUM NUM VIRGULA ID .)
+
+
+state 113
+
+    (51) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo . FIM_COND PONTOVIRGULA
+    (52) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo . SENAO Codigo FIM_COND PONTOVIRGULA
+
+    FIM_COND        shift and go to state 118
+    SENAO           shift and go to state 119
+
+
+state 114
+
+    (53) WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo . FIM_ENQUANTO PONTOVIRGULA
+
+    FIM_ENQUANTO    shift and go to state 120
+
+
+state 115
+
+    (34) expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO . expr RPAREN_RETO
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 121
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 116
+
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr . RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    RPAREN_RETO     shift and go to state 122
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 117
+
+    (30) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr . PONTOVIRGULA
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    PONTOVIRGULA    shift and go to state 123
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 118
+
+    (51) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 124
+
+
+state 119
+
+    (52) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO . Codigo FIM_COND PONTOVIRGULA
+    (7) Codigo -> . Proc Codigo
+    (8) Codigo -> . Decls Codigo
+    (9) Codigo -> . Atrib Codigo
+    (10) Codigo -> . COMENTARIO Codigo
+    (11) Codigo -> . Proc
+    (12) Codigo -> . Atrib
+    (13) Codigo -> . Decls
+    (14) Codigo -> . COMENTARIO
+    (19) Proc -> . IF
+    (20) Proc -> . WHILE
+    (21) Proc -> . PRINTAR
+    (15) Decls -> . Decl PONTOVIRGULA
+    (16) Decls -> . Decl VIRGULA Decls
+    (23) Atrib -> . INT ID IGUAL expr PONTOVIRGULA
+    (24) Atrib -> . ID IGUAL expr PONTOVIRGULA
+    (25) Atrib -> . ALTERA ID IGUAL expr PONTOVIRGULA
+    (30) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (33) Atrib -> . ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA
+    (56) COMENTARIO -> . COMENTADO
+    (51) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA
+    (52) IF -> . SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA
+    (53) WHILE -> . ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA
+    (54) PRINTAR -> . IMPRIMIR LPAREN FRASE RPAREN PONTOVIRGULA
+    (55) PRINTAR -> . IMPRIMIR LPAREN ID RPAREN PONTOVIRGULA
+    (22) Decl -> . INT ID
+    (29) Decl -> . LISTA INT NUM VIRGULA ID
+    (32) Decl -> . MATRIZ INT NUM NUM VIRGULA ID
+
+    INT             shift and go to state 6
+    ID              shift and go to state 7
+    ALTERA          shift and go to state 8
+    COMENTADO       shift and go to state 17
+    SE              shift and go to state 18
+    ENQUANTO        shift and go to state 19
+    IMPRIMIR        shift and go to state 20
+    LISTA           shift and go to state 10
+    MATRIZ          shift and go to state 11
+
+    Codigo                         shift and go to state 125
+    Proc                           shift and go to state 12
+    Decls                          shift and go to state 21
+    Atrib                          shift and go to state 24
+    COMENTARIO                     shift and go to state 13
+    IF                             shift and go to state 14
+    WHILE                          shift and go to state 15
+    PRINTAR                        shift and go to state 16
+    Decl                           shift and go to state 5
+
+state 120
+
+    (53) WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 126
+
+
+state 121
+
+    (34) expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr . RPAREN_RETO
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    RPAREN_RETO     shift and go to state 127
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 122
+
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO . IGUAL expr PONTOVIRGULA
+
+    IGUAL           shift and go to state 128
+
+
+state 123
+
+    (30) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .
+
+    INT             reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    ID              reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    ALTERA          reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    COMENTADO       reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    SE              reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    LISTA           reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    MATRIZ          reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    $end            reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    FIM_COND        reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    SENAO           reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 30 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+
+
+state 124
+
+    (51) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .
+
+    INT             reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    ID              reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    ALTERA          reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    COMENTADO       reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    SE              reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    LISTA           reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    MATRIZ          reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    $end            reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    FIM_COND        reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    SENAO           reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 51 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo FIM_COND PONTOVIRGULA .)
+
+
+state 125
+
+    (52) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo . FIM_COND PONTOVIRGULA
+
+    FIM_COND        shift and go to state 129
+
+
+state 126
+
+    (53) WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .
+
+    INT             reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    ID              reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    ALTERA          reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    COMENTADO       reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    SE              reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    LISTA           reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    MATRIZ          reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    $end            reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    FIM_COND        reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    SENAO           reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 53 (WHILE -> ENQUANTO LPAREN exprRel RPAREN FAZ Codigo FIM_ENQUANTO PONTOVIRGULA .)
+
+
+state 127
+
+    (34) expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .
+
+    PONTOVIRGULA    reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    IGUALIGUAL      reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    DIFERENTE       reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    MENOR           reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    MENOROUIGUAL    reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    MAIOR           reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    MAIOROUIGUAL    reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    EE              reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    OU              reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    RPAREN_RETO     reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+    RPAREN          reduce using rule 34 (expr -> ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO .)
+
+
+state 128
+
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL . expr PONTOVIRGULA
+    (17) expr -> . exprArit
+    (18) expr -> . exprRel
+    (26) expr -> . NUM
+    (27) expr -> . ID
+    (28) expr -> . INPUT
+    (31) expr -> . ID LPAREN_RETO expr RPAREN_RETO
+    (34) expr -> . ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO
+    (35) exprArit -> . exprArit PLUS term
+    (36) exprArit -> . exprArit MINUS term
+    (37) exprArit -> . term
+    (43) exprRel -> . expr IGUALIGUAL expr
+    (44) exprRel -> . expr DIFERENTE expr
+    (45) exprRel -> . expr MENOR expr
+    (46) exprRel -> . expr MENOROUIGUAL expr
+    (47) exprRel -> . expr MAIOR expr
+    (48) exprRel -> . expr MAIOROUIGUAL expr
+    (49) exprRel -> . expr EE expr
+    (50) exprRel -> . expr OU expr
+    (38) term -> . term TIMES factor
+    (39) term -> . term DIVIDE factor
+    (40) term -> . factor
+    (41) factor -> . NUM
+    (42) factor -> . ID
+
+    NUM             shift and go to state 48
+    ID              shift and go to state 44
+    INPUT           shift and go to state 49
+
+    expr                           shift and go to state 130
+    exprArit                       shift and go to state 46
+    exprRel                        shift and go to state 47
+    term                           shift and go to state 50
+    factor                         shift and go to state 51
+
+state 129
+
+    (52) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 131
+
+
+state 130
+
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr . PONTOVIRGULA
+    (43) exprRel -> expr . IGUALIGUAL expr
+    (44) exprRel -> expr . DIFERENTE expr
+    (45) exprRel -> expr . MENOR expr
+    (46) exprRel -> expr . MENOROUIGUAL expr
+    (47) exprRel -> expr . MAIOR expr
+    (48) exprRel -> expr . MAIOROUIGUAL expr
+    (49) exprRel -> expr . EE expr
+    (50) exprRel -> expr . OU expr
+
+    PONTOVIRGULA    shift and go to state 132
+    IGUALIGUAL      shift and go to state 65
+    DIFERENTE       shift and go to state 66
+    MENOR           shift and go to state 67
+    MENOROUIGUAL    shift and go to state 68
+    MAIOR           shift and go to state 69
+    MAIOROUIGUAL    shift and go to state 70
+    EE              shift and go to state 71
+    OU              shift and go to state 72
+
+
+state 131
+
+    (52) IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .
+
+    INT             reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    ID              reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    ALTERA          reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    COMENTADO       reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    SE              reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    LISTA           reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    MATRIZ          reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    $end            reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    FIM_COND        reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    SENAO           reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 52 (IF -> SE LPAREN exprRel RPAREN ENTAO Codigo SENAO Codigo FIM_COND PONTOVIRGULA .)
+
+
+state 132
+
+    (33) Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .
+
+    INT             reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    ID              reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    ALTERA          reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    COMENTADO       reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    SE              reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    ENQUANTO        reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    IMPRIMIR        reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    LISTA           reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    MATRIZ          reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    $end            reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    FIM_COND        reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    SENAO           reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+    FIM_ENQUANTO    reduce using rule 33 (Atrib -> ALTERA ID LPAREN_RETO expr RPAREN_RETO LPAREN_RETO expr RPAREN_RETO IGUAL expr PONTOVIRGULA .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IGUALIGUAL in state 87 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 87 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 87 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 87 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 87 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 87 resolved as shift
+WARNING: shift/reduce conflict for EE in state 87 resolved as shift
+WARNING: shift/reduce conflict for OU in state 87 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 88 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 88 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 88 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 88 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 88 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 88 resolved as shift
+WARNING: shift/reduce conflict for EE in state 88 resolved as shift
+WARNING: shift/reduce conflict for OU in state 88 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 89 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 89 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 89 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 89 resolved as shift
+WARNING: shift/reduce conflict for EE in state 89 resolved as shift
+WARNING: shift/reduce conflict for OU in state 89 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 90 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 90 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 90 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for EE in state 90 resolved as shift
+WARNING: shift/reduce conflict for OU in state 90 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 91 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 91 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 91 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 91 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 91 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 91 resolved as shift
+WARNING: shift/reduce conflict for EE in state 91 resolved as shift
+WARNING: shift/reduce conflict for OU in state 91 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 92 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 92 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 92 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 92 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 92 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 92 resolved as shift
+WARNING: shift/reduce conflict for EE in state 92 resolved as shift
+WARNING: shift/reduce conflict for OU in state 92 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 93 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 93 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 93 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 93 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 93 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 93 resolved as shift
+WARNING: shift/reduce conflict for EE in state 93 resolved as shift
+WARNING: shift/reduce conflict for OU in state 93 resolved as shift
+WARNING: shift/reduce conflict for IGUALIGUAL in state 94 resolved as shift
+WARNING: shift/reduce conflict for DIFERENTE in state 94 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 94 resolved as shift
+WARNING: shift/reduce conflict for MENOROUIGUAL in state 94 resolved as shift
+WARNING: shift/reduce conflict for MAIOR in state 94 resolved as shift
+WARNING: shift/reduce conflict for MAIOROUIGUAL in state 94 resolved as shift
+WARNING: shift/reduce conflict for EE in state 94 resolved as shift
+WARNING: shift/reduce conflict for OU in state 94 resolved as shift
+WARNING: reduce/reduce conflict in state 2 resolved using rule (Programa -> Decls)
+WARNING: rejected rule (Codigo -> Decls) in state 2
+WARNING: reduce/reduce conflict in state 3 resolved using rule (Programa -> Atrib)
+WARNING: rejected rule (Codigo -> Atrib) in state 3
+WARNING: reduce/reduce conflict in state 23 resolved using rule (Corpo -> Codigo)
+WARNING: rejected rule (Codigo -> Decls Codigo) in state 23
+WARNING: reduce/reduce conflict in state 26 resolved using rule (Corpo -> Codigo)
+WARNING: rejected rule (Codigo -> Atrib Codigo) in state 26
+WARNING: reduce/reduce conflict in state 44 resolved using rule (expr -> ID)
+WARNING: rejected rule (factor -> ID) in state 44
+WARNING: reduce/reduce conflict in state 48 resolved using rule (expr -> NUM)
+WARNING: rejected rule (factor -> NUM) in state 48

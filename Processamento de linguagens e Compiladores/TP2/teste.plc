@@ -1,0 +1,10 @@
+
+lista int 5, x;
+
+x = 1;
+
+enquanto (x > 0) fazz
+  imprimir(x);
+  imprimir("\n");
+  altera x = x - 1;
+fim_enquanto;
